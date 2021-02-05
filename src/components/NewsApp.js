@@ -25,7 +25,7 @@ const NewsApp = () => {
                 <NewsList recieveData = {recieveData}/>
             </div>
             <div className="col-md-3">
-                <NewsCard author = {news.author} title={news.title} url={news.url} points={news.points} matchLevel={news._highlightResult.title.matchLevel} />
+                <NewsCard author = {news.author}  title={news.title} url={news.url} points={news.points}  />
             </div>
         </div>
     </div>
