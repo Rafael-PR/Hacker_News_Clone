@@ -10,22 +10,16 @@ const NewsCard = ({author,title,url,points}) => {
             <span>
                 <a href={url}>{title}</a>
             </span>
-                
-                
             </div>
         </div>
-        <div className="card-body text-center">
-            
 
+        <div className="card-body text-center">
             <ul className="list-group mt-3">
                 <li className="list-group-item list-group-item-primary">
                 By {author}
                 </li>
                 <li className="list-group-item list-group-item-primary">
-                 Points {points}   
-
-                 
-                </li>
+                Points {points} </li>
                 <li className="list-group-item list-group-item-primary">
                 By {author}
                 </li>

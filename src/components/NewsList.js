@@ -1,12 +1,24 @@
 import React, { Fragment, useEffect, useState } from "react";
 // import hackerNews from "./hackernews.json";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Pagination from './Pagination.js'
 const NewsList = (props) => {
   const [hackerNews, setHackerNews] = useState(null);
-
-  //for search
   const [userInput, setUserInput] = useState("");
   const [search, setSearch] = useState(null);
+
+
+  //  for Pagination
+  const [currentPage, setcurrentPage] = useState(1);
+  const [postsPerPage, setpostsPerPage] = useState(5);
+
+  //  for Pagination
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  const paginate = (pageNumber) => setcurrentPage(pageNumber);
+
+
   useEffect(() => {
     let url = `http://hn.algolia.com/api/v1/search?tags=front_page`;
     fetch(url)
@@ -37,6 +49,7 @@ const NewsList = (props) => {
     setUserInput("")
     setSearch(null)
   }
+  
   return (
     <Fragment>
       {/* <pre>{JSON.stringify(hackerNews)}</pre> */}
@@ -58,9 +71,11 @@ const NewsList = (props) => {
           </tr>
         </thead>
         <tbody>
+        {!hackerNews && <CircularProgress />}
           {hackerNews &&
             hackerNews.hits
               .filter((s) => (search ? s.title.includes(search) : s))
+              .slice(indexOfFirstPost,indexOfLastPost)
               .map((hackerNew) => {
                 return (
                   <tr
@@ -75,7 +90,14 @@ const NewsList = (props) => {
                 );
               })}
         </tbody>
+        
+        <Pagination
+        postsPerPage={postsPerPage}
+        // totalPosts={hackerNews.hits.length}
+        paginate={paginate}
+      />
       </table>
+              <pre>{JSON.stringify(hackerNews)}</pre>
     </Fragment>
   );
 };
