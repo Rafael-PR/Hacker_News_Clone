@@ -12,7 +12,7 @@
     background: linear-gradient(45deg,black,lightblue);
 }
 .btn-warning , .bg-warning{
-    background: linear-gradient(45deg,black,orange);
+    background: linear-gradient(15deg,black,rgb(167, 111, 7));
 }
 .btn-danger , .bg-danger{
     background: linear-gradient(45deg,black,red);
@@ -25,6 +25,8 @@
 }
 
 
+
+.pointer {cursor: pointer;}
 
 
 

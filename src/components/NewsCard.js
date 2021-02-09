@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NewsCard = ({author,title,url,points}) => {
+const NewsCard = ({author,title,url,points,num_comments,created_at}) => {
 
 
     return (
@@ -13,21 +13,18 @@ const NewsCard = ({author,title,url,points}) => {
             </div>
         </div>
 
-        <div className="card-body text-center">
-            <ul className="list-group mt-3">
+        <div className="card-body text-center ">
+            <ul className="list-group mt-3 pointer">
                 <li className="list-group-item list-group-item-primary">
-                By {author}
+                By: {author}
                 </li>
                 <li className="list-group-item list-group-item-primary">
-                Points {points} </li>
+                Points: {points} </li>
                 <li className="list-group-item list-group-item-primary">
-                By {author}
+                Comments:  {num_comments}
                 </li>
                 <li className="list-group-item list-group-item-primary">
-                By {author}
-                </li>
-                <li className="list-group-item list-group-item-primary">
-                By {author}
+                Created at: {created_at}
                 </li>
             </ul>
         </div>

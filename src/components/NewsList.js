@@ -31,8 +31,6 @@ let fetchData =()=>{
       .then((data) => {
         setHackerNews(data);
         sethackerNewsL(data.hits.length)
-
-
       })
 
       .catch((error) => console.log(error));
@@ -64,8 +62,6 @@ let fetchData =()=>{
   }
   
 
-
-
   return (
     <Fragment>
       {/* <pre>{JSON.stringify(hackerNews)}</pre> */}
@@ -77,13 +73,13 @@ let fetchData =()=>{
       />
       <button onClick={searchValue}>Search</button>
       <button onClick={resetValue}>Reset</button>
-      <table className="table table-hover text-center table-striped table-primary  ">
+      <table className="table table-hover text-center table-striped table-primary pointer ">
         <thead className="bg-dark text-white">
-          <tr>
-            <th>ID</th>
-            <th>TITLE</th>
-            <th>AUTHOR</th>
-            <th>URL</th>
+          <tr  >
+            <th scope="col" >ID</th>
+            <th scope="col" >TITLE</th>
+            <th scope="col" >AUTHOR</th>
+            <th scope="col" >URL</th>
           </tr>
         </thead>
         <tbody>
@@ -95,6 +91,7 @@ let fetchData =()=>{
               .map((hackerNew) => {
                 return (
                   <tr
+                  
                     key={hackerNew.objectID}
                     onClick={grapTable.bind(this, hackerNew)}
                   >
@@ -106,7 +103,6 @@ let fetchData =()=>{
                 );
               })}
         </tbody>
-        
       </table>
 
 

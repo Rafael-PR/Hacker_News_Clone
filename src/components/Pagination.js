@@ -10,7 +10,6 @@ const Pagination = ({ postsPerPage , totalPosts, paginate }) => {
 
 
     return (
-
         <nav>
             <ul className="pagination">
                 {
@@ -18,13 +17,10 @@ const Pagination = ({ postsPerPage , totalPosts, paginate }) => {
                         <li>
                             <a  onClick={()=>paginate(number)} href="!#"className="page-link" >{number}</a>
                         </li>
-
                     ))
                 }
             </ul>
-
         </nav>
-
     )
 }
 
