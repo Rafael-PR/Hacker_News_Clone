@@ -6,7 +6,7 @@ const NewsList = (props) => {
   const [hackerNews, setHackerNews] = useState(null);
   const [userInput, setUserInput] = useState("");
   const [search, setSearch] = useState(null);
-
+  const [hackerNewsL, sethackerNewsL] = useState(0)
 
   //  for Pagination
   const [currentPage, setcurrentPage] = useState(1);
@@ -19,17 +19,30 @@ const NewsList = (props) => {
   const paginate = (pageNumber) => setcurrentPage(pageNumber);
 
 
-  useEffect(() => {
-    let url = `http://hn.algolia.com/api/v1/search?tags=front_page`;
-    fetch(url)
+  //  fetching data
+
+let fetchData =()=>{
+  let url = `http://hn.algolia.com/api/v1/search?tags=front_page`;
+      fetch(url)
+
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setHackerNews(data);
+        sethackerNewsL(data.hits.length)
+
+
       })
+
       .catch((error) => console.log(error));
+}
+  useEffect(  () => {
+    fetchData()
   }, []);
+
+
+    //  send to NewsApp
 
   let grapTable = (data) => {
     props.recieveData(data);
@@ -50,6 +63,9 @@ const NewsList = (props) => {
     setSearch(null)
   }
   
+
+
+
   return (
     <Fragment>
       {/* <pre>{JSON.stringify(hackerNews)}</pre> */}
@@ -61,7 +77,7 @@ const NewsList = (props) => {
       />
       <button onClick={searchValue}>Search</button>
       <button onClick={resetValue}>Reset</button>
-      <table className="table table-hover text-center table-striped table-primary">
+      <table className="table table-hover text-center table-striped table-primary  ">
         <thead className="bg-dark text-white">
           <tr>
             <th>ID</th>
@@ -91,13 +107,17 @@ const NewsList = (props) => {
               })}
         </tbody>
         
-        <Pagination
+      </table>
+
+
+  {/* Pagination */}
+
+
+      <Pagination
         postsPerPage={postsPerPage}
-        // totalPosts={hackerNews.hits.length}
+        totalPosts={hackerNewsL}
         paginate={paginate}
       />
-      </table>
-              <pre>{JSON.stringify(hackerNews)}</pre>
     </Fragment>
   );
 };
